@@ -33,7 +33,7 @@ namespace WebServiceApi1
             //简化模式(授权码模式简化版本)
             var implicitOption = new OAuthAuthorizationServerOptions()
             {
-                AllowInsecureHttp = true,
+                AllowInsecureHttp = true, 
                 AuthenticationMode = AuthenticationMode.Active,
                 TokenEndpointPath = new PathString("/token"), //获取 access_token 授权服务请求地址
                 AuthorizeEndpointPath = new PathString("/authorize"),//获取 authorization_code 授权服务请求地址
