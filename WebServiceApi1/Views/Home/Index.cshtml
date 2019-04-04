@@ -1,0 +1,252 @@
+﻿
+<h3>一、下面练习一下js调用api的各种情况</h3><hr />
+<h4>1. 调用api的get方法</h4><hr />
+<h5>1.1 无参数调用</h5><hr />
+<button class="btn btn-primary" id="btn_noParam" onclick="api_get_noParam()">无参数调用</button>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>NAME</td>
+            <td>CHINESE</td>
+            <td>MATHEMATICS</td>
+            <td>ENGLISH</td>
+        </tr>
+    </thead>
+    <tbody id="content_noParam"></tbody>
+</table>
+
+<h5>1.2 带参数调用</h5><hr />
+<p>1.2.1 带一个参数调用</p>
+<label>姓名</label><input type="text" class="input-sm text-info" id="getParam_name" />
+<button class="btn btn-primary" id="btn_oneParam" onclick="api_get_oneParam()">带一个参数调用</button>
+<label id="content_oneParam"></label>
+<p>1.2.2 带多个参数调用</p>
+<label>姓名</label><input type="text" class="input-sm text-info" id="getParams_name" />
+<label>班级</label><input type="text" class="input-sm text-info" id="getParams_class" />
+<button class="btn btn-primary" id="btn_params" onclick="api_get_params()">带多个参数调用</button>
+<label id="content_params"></label>
+<h4>2. 调用api的post方法</h4><hr />
+<div class="form-group form-horizontal">
+    <label class="col-md-1">Name</label><input class="col-md-3 form-control col-md-3" id="postParam_name" />
+    <label class="col-md-1">ClassNo</label><input class="col-md-3 form-control" id="postParam_classNo" />
+    <label class="col-md-1">Chinese</label><input class="col-md-3 form-control" id="postParam_chinese" />
+    <br />
+    <br />
+    <label class="col-md-1">Math</label><input class="col-md-3 form-control" id="postParam_math" />
+    <label class="col-md-1">English</label><input class="col-md-3 form-control" id="postParam_english" />
+    <div class="col-md-3">
+        <button class="btn btn-primary" onclick="api_post()">post调用</button>
+    </div>
+</div>
+<br />
+<h4>3. 调用api的put方法</h4><hr />
+<div class="form-group form-horizontal">
+    <label class="col-md-1">Name</label><input class="col-md-3 form-control col-md-3" id="putParam_name" />
+    <label class="col-md-1">ClassNo</label><input class="col-md-3 form-control" id="putParam_classNo" />
+    <label class="col-md-1">Chinese</label><input class="col-md-3 form-control" id="putParam_chinese" />
+    <br />
+    <br />
+    <label class="col-md-1">Math</label><input class="col-md-3 form-control" id="putParam_math" />
+    <label class="col-md-1">English</label><input class="col-md-3 form-control" id="putParam_english" />
+    <div class="col-md-3">
+        <button class="btn btn-primary" onclick="api_put()">put调用</button>
+    </div>
+</div>
+<br />
+<h4>4. 调用api的delete方法</h4><hr />
+<label>姓名</label><input type="text" class="input-sm text-info" id="deleteParam_name" />
+<button class="btn btn-primary" onclick="api_delete()">delete调用</button>
+<br />
+<h3>二、下面练习一下控件直接调用api的各种情况(一般通过ajax调用api，直接调用无法获取返回值)</h3><hr />
+<form action="http://localhost:6745/api/RealTimeApi/add" method="post" class="form-horizontal">
+    <label class="col-md-1">Name</label><input class="col-md-3 form-control" name="Name" id="postParam_name" />
+    <label class="col-md-1">ClassNo</label><input class="col-md-3 form-control" name="ClassNo" id="postParam_classNo" />
+    <label class="col-md-1">Chinese</label><input class="col-md-3 form-control" name="Chinesc" id="postParam_chinese" />
+    <br />
+    <br />
+    <label class="col-md-1">Math</label><input class="col-md-3 form-control" name="Mathematics" id="postParam_math" />
+    <label class="col-md-1">English</label><input class="col-md-3 form-control" name="English" id="postParam_english" />
+    <div class="col-md-3">
+        <button class="btn btn-primary" type="submit">直接调用</button>
+    </div>
+</form>
+<br />
+<h3>三、API权限认证</h3>
+<br />
+<h4>1.客户端模式</h4>
+<hr />
+<form class="form-horizontal">
+    <div class="col-md-1">
+        <button class="btn btn-primary" type="button" onclick="getToken()">获取token</button>
+    </div>
+    <div class="col-md-1">
+        <button type="button" class="btn btn-primary" onclick="getNews()">获取新闻</button>
+    </div>
+    <div class="col-md-3">
+        <input id="news" class="form-control" value="新闻" type="text" />
+    </div>
+</form>
+<br />
+<br />
+<h4>2.授权码模式</h4>
+<hr />
+<form class="form-horizontal">
+    <div class="col-md-1">
+        <button class="btn btn-primary" type="button" onclick="authorCode()">授权</button>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-primary" type="button" onclick="authorToken()">获取token</button>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-primary" type="button" onclick="refreshAuthorToken()">刷新token</button>
+    </div>
+    <div class="col-md-5">
+        <input class="form-control" id="token" type="text"/>
+        </div>
+</form>
+<br />
+<br />
+<h4>3.简化模式</h4>
+<hr />
+<div class="col-md-1">
+    <button class="btn btn-primary" type="button" onclick="implicitToken()">ImplicitToken</button>
+</div>
+<br /><br />
+<script type="text/javascript">
+    function implicitToken() {
+        $.post("/Home/ImplicitToken", null, function (data) {
+            //console.log(data);
+            $('#token').val(data);
+        }, 'text')
+    }
+    function authorCode() {
+        $.get('/Home/GiveAuthorCode', null, function (data) { $('#token').val(data); }, 'text');
+    }
+    function authorToken() {
+        $.post("/Home/getAuthorToken", null, function (data) {
+            //console.log(data);
+            $('#token').val(data);
+        }, 'text')
+    }
+    function refreshAuthorToken() {
+        $.post("/Home/RefreshAuthorToken", null, function (data) {
+            //console.log(data);
+            $('#token').val(data);
+        }, 'text')
+    }
+    function getNews() {
+        //$.post('http://localhost:8001/api/v1/oauth2/news', $('#token').val(), function (data) {
+        //    console.log(data);
+        //    $('#news').val();
+        //}, 'json')
+
+        $.ajax({
+            url: 'http://localhost:8001/api/v1/oauth2/news',
+            data: { token: $('#token').val() },
+            dataType: 'json',
+            type: 'get',
+            headers: { 'authorization': 'bearer ' + $('#token').val() },
+            success: function (data) {
+                console.log(data)
+                var dd = data.Data;
+                console.log(dd)
+                $('#news').val(dd);
+            },
+            error: function (data, status) {
+                console.log(data);
+                console.log(status);
+            }
+
+        });
+
+    }
+    function getToken() {
+        $.post("/Home/GetApiData", null, function (data) {
+            //console.log(data);
+            $('#token').val(data);
+            console.log($('#token').val());
+        }, 'text')
+    }
+    function api_get_noParam() {
+        $.ajax({
+            url: 'http://localhost:6745/api/RealTimeApi/getAllStudents',
+            type: 'get',
+            datatype: 'json',
+            success: function (data) {
+                $('#content_noParam').append('');
+                $.each(data, function (index, element) {
+                    var tr = '<tr><td>' + element.ID + '</td><td>' + element.Name + '</td><td>' + element.Chinese + '</td><td>' + element.Mathematics + '</td><td>' + element.English + '</td></tr>';
+                    $('#content_noParam').append(tr);
+                })
+            }
+        });
+    }
+    function api_get_oneParam() {
+        $.ajax({
+            url: 'http://localhost:6745/api/RealTimeApi/getStudentByName',
+            data: { 'name': $('#getParam_name').val() },
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $('#content_oneParam').html('');
+                if (data != null) {
+                    $('#content_oneParam').append('ID:' + data.ID + ' ,Name:' + data.Name + ' ,Chinese:' + data.Chinese + ' ,Math:' + data.Mathematics + ' ,English:' + data.English);
+                }
+            }
+        })
+    }
+    function api_get_params() {
+        $.ajax({
+            url: 'http://localhost:6745/api/RealTimeApi/getStudentByNameAndClass',
+            data: { 'name': $('#getParams_name').val(), 'classNo': $('#getParams_class').val() },
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $('#content_params').html('');
+                if (data != null) {
+                    $('#content_params').append('ID:' + data.ID + ' ,Name:' + data.Name + ' ,Chinese:' + data.Chinese + ' ,Math:' + data.Mathematics + ' ,English:' + data.English);
+                }
+            }
+        });
+    }
+    function api_post() {
+        $.ajax({
+            url: 'http://localhost:6745/api/RealTimeApi/add',
+            data: { 'Name': $('#postParam_name').val(), 'ClassNo': $('#postParam_classNo').val(), 'Chinese': $('#postParam_chinese').val(), 'Mathematics': $('#postParam_math').val(), 'English': $('#postParam_english').val() },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                alert(data);
+            }
+        });
+    }
+    function api_put() {
+        $.ajax({
+            url: 'http://localhost:6745/api/RealTimeApi/updateStudent',
+            type: 'put',
+            data: { 'Name': $('#putParam_name').val(), 'ClassNo': $('#putParam_classNo').val(), 'Chinese': $('#putParam_chinese').val(), 'Mathematics': $('#putParam_math').val(), 'English': $('#putParam_english').val() },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+
+        })
+    }
+    function api_delete() {
+        $.ajax({
+            url: 'http://localhost:6745/api/RealTimeApi/delete',
+            type: 'delete',
+
+            data: { '': $('#deleteParam_name').val() },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                alert(data);
+            }
+        });
+    }
+</script>
